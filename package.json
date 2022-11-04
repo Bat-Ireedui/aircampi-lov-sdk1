@@ -1,0 +1,23 @@
+{
+  "name": "aircampi-lov-sdk-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bat-Ireedui/aircampi-lov-sdk1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bat-Ireedui/aircampi-lov-sdk1/issues"
+  },
+  "homepage": "https://github.com/Bat-Ireedui/aircampi-lov-sdk1#readme",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
+}
