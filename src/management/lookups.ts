@@ -4,24 +4,27 @@ import { Base } from ".";
 
 export class Lookup extends Base implements ILookups {
   async getLookups(): Promise<Lookups> {
-    return this.request("tenants", HttpType.Get);
+    return this.request("lookups", HttpType.Get);
   }
 
-  async getLookupById(tenant_id: string): Promise<LookupView> {
-    return this.request(`tenants/${tenant_id}`, HttpType.Get);
+  async getLookupById(lookup_code: string): Promise<LookupView> {
+    return this.request(`lookups/${lookup_code}`, HttpType.Get);
   }
 
-  async updateLookup(tenant_id: string, body: LookupData): Promise<LookupView> {
-    return this.request(`tenants/${tenant_id}`, HttpType.Put, (body = body));
+  async updateLookup(
+    lookup_code: string,
+    body: LookupData
+  ): Promise<LookupView> {
+    return this.request(`lookups/${lookup_code}`, HttpType.Put, (body = body));
   }
 
   async createLookup(
     body: { code: string; name: string } & LookupData
   ): Promise<LookupView> {
-    return this.request("tenants", HttpType.Post, (body = body));
+    return this.request("lookups", HttpType.Post, (body = body));
   }
 
-  async deleteLookup(tenant_id: string): Promise<LookupView> {
-    return this.request(`tenants/${tenant_id}`, HttpType.Delete);
+  async deleteLookup(lookup_code: string): Promise<LookupView> {
+    return this.request(`lookups/${lookup_code}`, HttpType.Delete);
   }
 }

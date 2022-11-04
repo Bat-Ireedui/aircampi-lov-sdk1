@@ -7,7 +7,7 @@ export class Client {
   constructor(config: Config) {
     this.client_id = config.client_id;
     this.domain = config.domain || "http://localhost:8536";
-    fetch("http://localhost:8536/auth/v1/tenants", {
+    fetch(`${this.domain}/lookups`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
