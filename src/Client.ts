@@ -9,11 +9,11 @@ export class Client {
     this.domain = config.domain || "http://localhost:3003";
     cors();
     fetch(`${this.domain}/lov/v1/lookups`, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      method: "GET", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Access-Control-Allow-Methods": "*",
         "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": `localhost:${3000}`,
         "Content-Type": "application/json",
         "client-id": this.client_id,
       },
