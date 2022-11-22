@@ -13,7 +13,7 @@ export class Client {
       headers: {
         "Access-Control-Allow-Methods": "*",
         "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": `localhost:${3000}`,
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
         "client-id": this.client_id,
       },
