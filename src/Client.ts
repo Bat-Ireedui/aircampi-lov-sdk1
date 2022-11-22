@@ -6,6 +6,7 @@ export class Client {
   constructor(config: Config) {
     this.client_id = config.client_id;
     this.domain = config.domain || "http://localhost:3003";
+    const cors = require("cors");
     fetch(`${this.domain}/lov/v1/lookups`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -24,6 +25,7 @@ export class Client {
       .catch((err) => {
         return err;
       });
+    cors();
   }
 
   get lookups() {
