@@ -12,11 +12,12 @@ export class Client {
       headers: {
         "Content-Type": "application/json",
         "client-id": this.client_id,
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods":
-          "GET, POST, OPTIONS, PUT, PATCH, DELETE",
         "Access-Control-Allow-Headers":
-          "Origin, X-Requested-With, Content-Type, Accept",
+          "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
+        "Access-Control-Allow-Methods": "OPTIONS,POST",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Origin": "*",
+        "X-Requested-With": "*",
       },
     })
       .then((response) => {
