@@ -13,7 +13,7 @@ export interface ILookups {
 }
 
 export type Lookups = {
-  total_count: number;
+  total_count?: number;
   count: number;
   has_more: boolean;
   limit: number;

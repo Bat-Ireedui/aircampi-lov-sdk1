@@ -3,7 +3,7 @@ export declare class Client {
     private client_id;
     private domain;
     constructor(config: Config);
-    get Lookup(): Lookup;
+    get lookups(): Lookup;
 }
 declare type Config = {
     client_id: string;

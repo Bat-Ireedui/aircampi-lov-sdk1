@@ -1,5 +1,5 @@
 import { ILookups, LookupView, LookupData, Lookups } from "./schema";
-import { Base } from ".";
+import { Base } from "./index";
 export declare class Lookup extends Base implements ILookups {
     getLookups(): Promise<Lookups>;
     getLookupById(lookup_code: string): Promise<LookupView>;
