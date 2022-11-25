@@ -1,5 +1,4 @@
-import { Lookup } from "./management/lookups";
-const cors = require("cors");
+import { Lookup, LookupValues } from "./management/lookups";
 
 export class Client {
   private client_id: string;
@@ -7,7 +6,7 @@ export class Client {
   constructor(config: Config) {
     this.client_id = config.client_id;
     this.domain = config.domain || "http://localhost:3003";
-    cors();
+
     fetch(`${this.domain}/lov/v1/lookups`, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -28,6 +27,9 @@ export class Client {
 
   get lookups() {
     return new Lookup(this.client_id, this.domain);
+  }
+  get lookupsValue() {
+    return new LookupValues(this.client_id, this.domain);
   }
 }
 

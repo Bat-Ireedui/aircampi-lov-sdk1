@@ -7,11 +7,35 @@ export interface ILookups {
   updateLookup(lookup_code: string, body: LookupData): Promise<LookupView>;
   deleteLookup(lookup_code: string): Promise<LookupView>;
   changeLookupById?(
-    body: { new_code: string },
-    lookup_code: string
-  ): Promise<LookupView>;
+    lookup_code: string,
+    body: { new_code: string }
+  ): Promise<LookupChange>;
 }
-
+export interface ILookupValues {
+  getLookupValues(lookup_code: string): Promise<Lookups>;
+  createLookupValue(
+    lookup_code: string,
+    body: { code: string; name: string } & LookupData
+  ): Promise<LookupView>;
+  getLookupById?(
+    lookup_code: string,
+    lookup_value_code: string
+  ): Promise<LookupView>;
+  updateLookupValue(
+    lookup_code: string,
+    lookup_value_code: string,
+    body: LookupValueBody
+  ): Promise<LookupView>;
+  deleteLookupValue(
+    lookup_code: string,
+    lookup_value_code: string
+  ): Promise<LookupValueDelete>;
+  changeLookupValue?(
+    lookup_code: string,
+    lookup_value_code: string,
+    body: { new_code: string }
+  ): Promise<LookupChange>;
+}
 export type Lookups = {
   total_count?: number;
   count: number;
@@ -20,13 +44,17 @@ export type Lookups = {
   offset: number;
   items: object[];
 };
-
+export type LookupChange = {
+  new_code: string;
+};
 export type LookupView = {
   id?: string;
+  lookup_id?: string;
   code?: string;
   name?: string;
   description?: string;
   metadata?: object[];
+  sequence?: number;
   enabled?: boolean;
   created_at?: string;
   updated_at?: string;
@@ -39,31 +67,19 @@ export type LookupData = {
   name?: string;
   description?: string;
   metadata?: object[];
+  sequence?: number;
+};
+export type LookupValueBody = {
+  name?: string;
+  description?: string;
+  metadata?: object[];
+  sequence?: string;
+  enabled?: boolean;
 };
 
-export type UserData = {
-  username?: string;
-  email?: string;
-  email_verified?: boolean;
-  phone?: string;
-  phone_verified?: boolean;
-  nickname?: string;
-  firstname?: string;
-  middlename?: string;
-  lastname?: string;
-  familyname?: string;
-  fullname?: string;
-  picture?: string;
-  profile?: string;
-  website?: string;
-  gender?: string;
-  birthday?: string;
-  zoneinfo?: string;
-  locale?: string;
-  address?: object;
-  user_metadata?: object;
-  app_metadata?: object;
-  invited_at?: string;
+export type LookupValueDelete = {
+  code?: string;
+  message?: string;
 };
 
 // export interface IUser {
