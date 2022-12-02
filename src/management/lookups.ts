@@ -6,6 +6,14 @@ import {
   LookupChange,
   ILookupValues,
   LookupValueBody,
+  LookupValueDelete,
+  ILookupTranslations,
+  LookupValueTranslationsData,
+  LookupTranslationView,
+  ILookupSettings,
+  LookupSettingsData,
+  ILookupHealth,
+  LookupHealthData,
 } from "./schema";
 import { HttpType } from "../global";
 import { Base } from "./index";
@@ -105,5 +113,123 @@ export class LookupValues extends Base implements ILookupValues {
       HttpType.Post,
       (body = body)
     );
+  }
+}
+
+export class LookupTranslations extends Base implements ILookupTranslations {
+  async getLookupTranslations(lookup_code: string): Promise<Lookups> {
+    return await this.request(
+      `lookups/${lookup_code}/translations`,
+      HttpType.Get
+    );
+  }
+
+  async createLookupTranslation(
+    lookup_code: string,
+    body: LookupValueTranslationsData
+  ): Promise<LookupTranslationView> {
+    return await this.request(
+      `lookups/${lookup_code}/translations`,
+      HttpType.Post,
+      (body = body)
+    );
+  }
+  async getLookupByTranslation(
+    lookup_code: string,
+    language: string
+  ): Promise<LookupTranslationView> {
+    return await this.request(
+      `lookups/${lookup_code}/translations/${language}`,
+      HttpType.Get
+    );
+  }
+  async updateLookupTranslation(
+    lookup_code: string,
+    language: string,
+    body: LookupValueBody
+  ): Promise<LookupTranslationView> {
+    return await this.request(
+      `lookups/${lookup_code}/translations/${language}`,
+      HttpType.Put,
+      (body = body)
+    );
+  }
+  async deleteLookupTranslation(
+    lookup_code: string,
+    language: string
+  ): Promise<LookupValueDelete> {
+    return await this.request(
+      `lookups/${lookup_code}/translations/${language}`,
+      HttpType.Delete
+    );
+  }
+  async getLookupValueTranslations(
+    lookup_code: string,
+    value: string
+  ): Promise<Lookups> {
+    return await this.request(
+      `lookups/${lookup_code}/values/${value}/translations`,
+      HttpType.Get
+    );
+  }
+
+  async createLookupValueTranslation(
+    lookup_code: string,
+    value: string,
+    body: LookupValueTranslationsData
+  ): Promise<LookupTranslationView> {
+    return await this.request(
+      `lookups/${lookup_code}/values/${value}/translations`,
+      HttpType.Post,
+      (body = body)
+    );
+  }
+  async getLookupByValueTranslation(
+    lookup_code: string,
+    value: string,
+    language: string
+  ): Promise<LookupTranslationView> {
+    return await this.request(
+      `lookups/${lookup_code}/values/${value}/translations/${language}`,
+      HttpType.Get
+    );
+  }
+  async updateLookupValueTranslation(
+    lookup_code: string,
+    value: string,
+    language: string,
+    body: LookupTranslationView
+  ): Promise<LookupTranslationView> {
+    return await this.request(
+      `lookups/${lookup_code}/values/${value}/translations/${language}`,
+      HttpType.Put,
+      (body = body)
+    );
+  }
+  async deleteLookupValueTranslation(
+    lookup_code: string,
+    value: string,
+    language: string
+  ): Promise<LookupValueDelete> {
+    return await this.request(
+      `lookups/${lookup_code}/values/${value}/translations/${language}`,
+      HttpType.Delete
+    );
+  }
+}
+
+export class LookupSettings extends Base implements ILookupSettings {
+  async getLookupSettings(): Promise<LookupSettingsData> {
+    return await this.request(`settings`, HttpType.Get);
+  }
+  async updateLookupValueTranslation(
+    body: LookupSettingsData
+  ): Promise<LookupSettingsData> {
+    return await this.request(`settings`, HttpType.Put, (body = body));
+  }
+}
+export class LookupHealth extends Base implements ILookupHealth {
+  async getLookupHealth(): Promise<LookupHealthData> {
+    return await this.request(`health`, HttpType.Get);
   }
 }

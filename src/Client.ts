@@ -1,11 +1,11 @@
-import { Lookup, LookupValues } from "./management/lookups";
+import { Lookup, LookupValues, LookupTranslations } from "./management/lookups";
 
 export class Client {
   private client_id: string;
   private domain: string;
   constructor(config: Config) {
     this.client_id = config.client_id;
-    this.domain = config.domain || "http://localhost:3003";
+    this.domain = config.domain || "http://localhost:3004";
 
     fetch(`${this.domain}/lov/v1/lookups`, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -30,6 +30,9 @@ export class Client {
   }
   get lookupsValue() {
     return new LookupValues(this.client_id, this.domain);
+  }
+  get lookupsTranslations() {
+    return new LookupTranslations(this.client_id, this.domain);
   }
 }
 
